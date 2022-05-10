@@ -5,6 +5,8 @@ spring:
     loadbalancer:
       cache:
         ttl: 0
+      ribbon:
+        enable: true
     gateway:
       routes:
         - id: service
@@ -28,3 +30,7 @@ eureka:
     registerWithEureka: true
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_ADDRESS}
+
+logging:
+  level:
+    root: TRACE

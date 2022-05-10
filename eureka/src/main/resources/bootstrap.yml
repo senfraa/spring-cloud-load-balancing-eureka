@@ -5,11 +5,10 @@ server:
   port: 8761
 eureka:
   instance:
-    prefer-ip-address: true
+    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_ADDRESS}/eureka/
   server:
+    enable-self-preservation: false
     waitTimeInMsWhenSyncEmpty: 0
