@@ -3,10 +3,12 @@ spring:
     name: gateway
   cloud:
     loadbalancer:
+      health-check:
+        refetch-instances: true
+        refetch-interval: 1
       cache:
         ttl: 0
-      ribbon:
-        enable: true
+        enabled: false
     gateway:
       routes:
         - id: service
