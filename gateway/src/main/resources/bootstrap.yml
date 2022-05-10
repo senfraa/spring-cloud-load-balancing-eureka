@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    loadbalancer:
+      cache:
+        ttl: 0
+    gateway:
+      routes:
+        - id: service
+          uri: lb://service
+          predicates:
+            - Path=/service/**
+          filters:
+            - AddRequestHeader=X-Client,web
+            - AddResponseHeader=X-Type,inorganic
+            - name: Retry
+              args:
+                retries: 3
+                methods: GET
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
+server:
+  port: 9000
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_ADDRESS}
